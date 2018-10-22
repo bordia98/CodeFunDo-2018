@@ -59,6 +59,7 @@ public class ToDoActivity extends Activity {
      */
     private MobileServiceTable<ToDoItem> mToDoTable;
 
+
     //Offline Sync
     /**
      * Mobile Service Table used to access and Sync data
