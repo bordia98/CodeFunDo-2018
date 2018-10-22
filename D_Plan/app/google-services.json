@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "201745909803",
+    "firebase_url": "https://dplan-b553f.firebaseio.com",
+    "project_id": "dplan-b553f",
+    "storage_bucket": "dplan-b553f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201745909803:android:765d1d0ffe58770d",
+        "android_client_info": {
+          "package_name": "com.example.zumoappname"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201745909803-cqaqsuk3njg52c5r97pmpnqcvtv19d05.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.zumoappname",
+            "certificate_hash": "d513e0f82ea78b381ebdd0c2b11017181cf18c17"
+          }
+        },
+        {
+          "client_id": "201745909803-8f9q5oq309bbhhrtkr2jt8rp2ip94ojj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiAKJzIa7whfI4jSLRiwJ4FaB_BKdOacY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201745909803-8f9q5oq309bbhhrtkr2jt8rp2ip94ojj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
