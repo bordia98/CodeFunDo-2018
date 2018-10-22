@@ -57,9 +57,17 @@
         android:id="@+id/listViewToDo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/row_list_to_do"
-        android:padding="6dip" >
+        android:padding="6dip"
+        tools:listitem="@layout/row_list_to_do">
 
     </ListView>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:minHeight="50dp"
+        android:id="@+id/logout"
+        android:background="#ADD8E6"
+        android:layout_gravity="bottom"/>
 </LinearLayout>

@@ -10,20 +10,24 @@ import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.SettableFuture;
+import com.google.firebase.auth.FirebaseAuth;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.http.NextServiceFilterCallback;
 import com.microsoft.windowsazure.mobileservices.http.OkHttpClientFactory;
@@ -79,15 +83,26 @@ public class ToDoActivity extends Activity {
     /**
      * Initializes the activity
      */
+
+    String role;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do);
 
+        Button logout = (Button)findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout_here();
+            }
+        });
         mProgressBar = (ProgressBar) findViewById(R.id.loadingProgressBar);
-
         // Initialize the progress bar
         mProgressBar.setVisibility(ProgressBar.GONE);
+
+        role = getIntent().getStringExtra("role");
+        Toast.makeText(getApplicationContext(),role,Toast.LENGTH_SHORT).show();
 
         try {
             // Create the Mobile Service Client instance, using the provided
@@ -132,6 +147,18 @@ public class ToDoActivity extends Activity {
             createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
         } catch (Exception e){
             createAndShowDialog(e, "Error");
+        }
+    }
+
+    private void logout_here() {
+        try {
+            FirebaseAuth mauth = FirebaseAuth.getInstance();
+            mauth.signOut();
+            Intent i = new Intent(getApplicationContext(),Login.class);
+            startActivity(i);
+        }catch (Exception e) {
+            Intent i = new Intent(getApplicationContext(),Login.class);
+            startActivity(i);
         }
     }
 
