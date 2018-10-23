@@ -37,11 +37,15 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Admin_Panel"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Add_Disaster"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".Add_Disaster"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".Delete_record"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
     </application>
 
 </manifest>

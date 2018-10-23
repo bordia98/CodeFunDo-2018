@@ -1,0 +1,89 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#002e4d"
+        app:titleTextColor="#FFFFFF"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="#e6e6e6"
+        android:orientation="vertical"
+        android:padding="6dip" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:id="@+id/dtype"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:textColor="#000000"
+                android:padding="5dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="Place:"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:padding="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="__________"
+                android:id="@+id/dloc"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:padding="5dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:background="#002e4d"
+        android:padding="10dp"
+        android:text="Delete"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp" />
+
+</LinearLayout>

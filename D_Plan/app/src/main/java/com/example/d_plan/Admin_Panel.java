@@ -12,10 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -87,11 +89,25 @@ public class Admin_Panel extends AppCompatActivity {
 
             initLocalStore().get();
 
-
             // Create an adapter to bind the items with the view
             mAdapter = new Disaster_itemAdapter(this, R.layout.dname_layout);
-            ListView listViewToDo = (ListView) findViewById(R.id.listViewToDo);
+            final ListView listViewToDo = (ListView) findViewById(R.id.listViewToDo);
             listViewToDo.setAdapter(mAdapter);
+
+
+            listViewToDo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    TextView name = (TextView) view.findViewById(R.id.dtype);
+                    TextView loc = (TextView) view.findViewById(R.id.dloc);
+                    TextView did = (TextView) view.findViewById(R.id.did);
+                    Intent i = new Intent(getApplicationContext(),Delete_record.class);
+                    i.putExtra("dtype",name.getText().toString());
+                    i.putExtra("dloc",loc.getText().toString());
+                    i.putExtra("id",did.getText().toString());
+                    startActivity(i);
+                }
+            });
 
             // Load the items from the Mobile Service
             refreshItemsFromTable();

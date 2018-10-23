@@ -2,6 +2,7 @@ package com.example.d_plan;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,10 +47,12 @@ public class Disaster_itemAdapter extends ArrayAdapter<Disaster_List> {
 
         TextView dtype = (TextView) row.findViewById(R.id.dtype);
         TextView dloc  = (TextView) row.findViewById(R.id.dloc);
+        TextView id = (TextView) row.findViewById(R.id.did);
         try {
             assert currentItem != null;
             dtype.setText(currentItem.getText_name());
             dloc.setText(currentItem.getText_place());
+            id.setText(currentItem.getId());
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -58,8 +61,7 @@ public class Disaster_itemAdapter extends ArrayAdapter<Disaster_List> {
         dtype.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext,currentItem.getId(),Toast.LENGTH_SHORT).show();
-                Toast.makeText(mContext,currentItem.getText_place(),Toast.LENGTH_SHORT).show();
+                //do something
             }
         });
 //        row.setTag(currentItem);
