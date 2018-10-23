@@ -93,7 +93,7 @@ public class Sign_Up extends AppCompatActivity {
                     pgbar.setVisibility(View.GONE);
                     if (task.isSuccessful()) {
                         Toast.makeText(getApplicationContext(), "User created successfully", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(getApplicationContext(),ToDoActivity.class);
+                        Intent i = new Intent(getApplicationContext(),User_awareness.class);
                         startActivity(i);
                     }
                     else{

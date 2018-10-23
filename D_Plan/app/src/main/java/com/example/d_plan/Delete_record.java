@@ -109,13 +109,13 @@ public class Delete_record extends AppCompatActivity {
                 } catch (final Exception e) {
                     createAndShowDialogFromTask(e, "Error");
                 }
-
                 return null;
             }
         };
         runAsyncTask(task);
         Toast.makeText(getApplicationContext(),"Record is Deleted",Toast.LENGTH_SHORT).show();
         Intent i = new Intent(getApplicationContext(),Admin_Panel.class);
+        i.putExtra("role","admin");
         startActivity(i);
     }
 

@@ -2,17 +2,13 @@ package com.example.d_plan;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class Disaster_itemAdapter extends ArrayAdapter<Disaster_List> {
-
+public class user_disaster_adapter extends ArrayAdapter<Disaster_List> {
     /**
      * Adapter context
      */
@@ -23,7 +19,7 @@ public class Disaster_itemAdapter extends ArrayAdapter<Disaster_List> {
      */
     int mLayoutResourceId;
 
-    public Disaster_itemAdapter(Context context, int layoutResourceId) {
+    public user_disaster_adapter(Context context, int layoutResourceId) {
         super(context, layoutResourceId);
 
         mContext = context;
@@ -47,12 +43,10 @@ public class Disaster_itemAdapter extends ArrayAdapter<Disaster_List> {
 
         TextView dtype = (TextView) row.findViewById(R.id.dtype);
         TextView dloc  = (TextView) row.findViewById(R.id.dloc);
-        TextView id = (TextView) row.findViewById(R.id.did);
         try {
             assert currentItem != null;
             dtype.setText(currentItem.getText_name());
             dloc.setText(currentItem.getText_place());
-            id.setText(currentItem.getId());
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -64,7 +58,6 @@ public class Disaster_itemAdapter extends ArrayAdapter<Disaster_List> {
                 //do something
             }
         });
-
         return row;
     }
 
