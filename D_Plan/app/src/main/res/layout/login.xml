@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.d_plan.Login"
-    android:background="#f6f500">
+    android:background="#e6e6e6">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_signintoolbar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#00b0c8"
+        android:background="#002e4d"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         >
         <TextView
@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:text="Sign In"
             android:gravity = "center"
-            android:textColor="#000"
+            android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:textSize="30dp"
             android:id="@+id/toolbar_title" />
@@ -107,7 +107,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="130dp"
             android:layout_marginRight="130dp"
-            android:background="#ADD8E6"
+            android:background="#002e4d"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
             android:text="Login " />
 
         <LinearLayout
@@ -122,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:text="New User ?"
-                android:textColor="#0000ff"
+                android:textColor="#002e4d"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
@@ -133,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:text="Forget Password?"
-                android:textColor="#0000ff"
+                android:textColor="#002e4d"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
@@ -144,8 +146,10 @@
             android:id="@+id/pgbar"
             style="?android:attr/progressBarStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:indeterminateTintMode="src_atop"
+            android:indeterminateTint="#002e4d"
+            android:layout_height="28dp" />
 
         <Button
             android:id="@+id/skip"
@@ -154,8 +158,10 @@
             android:layout_gravity="center"
             android:text="Skip Sign In"
             android:layout_margin="20dp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
             android:padding="5dp"
-            android:background="#ADD8E6"
+            android:background="#002e4d"
             />
 
     </LinearLayout>
