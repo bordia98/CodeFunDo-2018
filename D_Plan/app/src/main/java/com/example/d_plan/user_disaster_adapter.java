@@ -43,14 +43,15 @@ public class user_disaster_adapter extends ArrayAdapter<Disaster_List> {
 
         TextView dtype = (TextView) row.findViewById(R.id.dtype);
         TextView dloc  = (TextView) row.findViewById(R.id.dloc);
+        TextView id = (TextView) row.findViewById(R.id.did);
         try {
             assert currentItem != null;
             dtype.setText(currentItem.getText_name());
             dloc.setText(currentItem.getText_place());
+            id.setText(currentItem.getId());
         }catch (Exception e){
             e.printStackTrace();
         }
-
         dtype.setTag(position);
         dtype.setOnClickListener(new View.OnClickListener() {
             @Override

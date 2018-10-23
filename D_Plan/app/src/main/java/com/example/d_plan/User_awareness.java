@@ -11,8 +11,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -88,6 +91,22 @@ public class User_awareness extends AppCompatActivity {
 
             // Load the items from the Mobile Service
             refreshItemsFromTable();
+
+            listViewToDo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    TextView name = (TextView) view.findViewById(R.id.dtype);
+                    TextView loc = (TextView) view.findViewById(R.id.dloc);
+                    TextView did = (TextView) view.findViewById(R.id.did);
+
+                    Intent i = new Intent(getApplicationContext(),User_Intermediate.class);
+                    i.putExtra("dtype",name.getText().toString());
+                    i.putExtra("dloc",loc.getText().toString());
+                    i.putExtra("id",did.getText().toString());
+                    startActivity(i);
+                }
+            });
 
         } catch (MalformedURLException e) {
             createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
