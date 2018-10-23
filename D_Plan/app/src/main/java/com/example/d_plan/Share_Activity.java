@@ -1,20 +1,26 @@
 package com.example.d_plan;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.http.OkHttpClientFactory;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
@@ -24,36 +30,35 @@ import com.microsoft.windowsazure.mobileservices.table.sync.localstore.MobileSer
 import com.microsoft.windowsazure.mobileservices.table.sync.localstore.SQLiteLocalStore;
 import com.microsoft.windowsazure.mobileservices.table.sync.synchandler.SimpleSyncHandler;
 import com.squareup.okhttp.OkHttpClient;
-
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import static android.location.LocationManager.GPS_PROVIDER;
 
-public class Delete_record extends AppCompatActivity {
 
-
+public class Share_Activity extends AppCompatActivity implements LocationListener {
     private MobileServiceClient mClient;
-    private MobileServiceTable<Disaster_List> dtable;
-    Button add_new_disaster;
-
-    String dtype,dloc,id;
-    TextView tpye,loc;
+    private MobileServiceTable<Affected_Person> atable;
+    EditText  mob, name;
+    TextView lat,lng;
+    Button shareloc;
+    String did;
+    protected LocationManager locationManager;
+    protected LocationListener locationListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delete_record);
-        Toolbar toolbar =(Toolbar)findViewById(R.id.my_toolbar);
+        setContentView(R.layout.activity_share_);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         assert toolbar != null;
-        toolbar.setTitle("Admin Panel");
+        toolbar.setTitle("Share Location");
         toolbar.getOverflowIcon().setColorFilter(ContextCompat.getColor(this, R.color.common_google_signin_btn_text_light_default), PorterDuff.Mode.SRC_ATOP);
         setSupportActionBar(toolbar);
-        dtype = getIntent().getStringExtra("dtype");
-        dloc = getIntent().getStringExtra("dloc");
-        id = getIntent().getStringExtra("id");
 
+        did = getIntent().getStringExtra("id");
         try {
             mClient = new MobileServiceClient("https://d-plan.azurewebsites.net", this);
 
@@ -68,19 +73,39 @@ public class Delete_record extends AppCompatActivity {
                 }
             });
 
-            tpye= (TextView)findViewById(R.id.dtype);
-            loc = (TextView)findViewById(R.id.dloc);
-            tpye.setText(dtype);
-            loc.setText(dloc);
-            dtable = mClient.getTable(Disaster_List.class);
+            atable = mClient.getTable(Affected_Person.class);
             initLocalStore().get();
-            Button delte = (Button)findViewById(R.id.delete);
-            delte.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    delete_record();
-                }
-            });
+            lat = (TextView) findViewById(R.id.latitude);
+            lng = (TextView) findViewById(R.id.longitude);
+            name = (EditText) findViewById(R.id.name);
+            mob = (EditText) findViewById(R.id.number);
+
+            shareloc = (Button) findViewById(R.id.sharelocation);
+
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getApplicationContext(),"No permissions given",Toast.LENGTH_SHORT).show();
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            else {
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+            }
+
+            if(lat.getText().toString().length()!=0 && lng.getText().toString().length()!=0)
+                shareloc.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        add_user(v);
+                    }
+                });
+
         } catch (MalformedURLException e) {
             createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
         } catch (Exception e){
@@ -88,24 +113,29 @@ public class Delete_record extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent i = new Intent(getApplicationContext(),Admin_Panel.class);
-        i.putExtra("role","admin");
-        startActivity(i);
-        super.onBackPressed();
-    }
 
-    private void delete_record() {
+    public void add_user(View view) {
         if (mClient == null) {
             return;
         }
+        // Create a new item
+        final Affected_Person item = new Affected_Person();
 
+        item.setText(name.getText().toString(),
+                mob.getText().toString(),
+                lat.getText().toString(),
+                lng.getText().toString(),
+                did);
+
+        item.setComplete(false);
+
+        // Insert the new item
         AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... params) {
                 try {
-                    dtable.delete(id);
+                    final Affected_Person entity = addInTable(item);
+
                 } catch (final Exception e) {
                     createAndShowDialogFromTask(e, "Error");
                 }
@@ -113,11 +143,30 @@ public class Delete_record extends AppCompatActivity {
             }
         };
         runAsyncTask(task);
-        Toast.makeText(getApplicationContext(),"Record is Deleted",Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(getApplicationContext(),Admin_Panel.class);
-        i.putExtra("role","admin");
+        name.setText("");
+        mob.setText("");
+        lat.setText("");
+        lng.setText("");
+        Toast.makeText(getApplicationContext(),"Your Location is Shared Successfully. Please wait to get Contacted",Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(getApplicationContext(),User_awareness.class);
+        i.putExtra("role","");
         startActivity(i);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(getApplicationContext(),User_awareness.class);
+        i.putExtra("role","");
+        startActivity(i);
+        super.onBackPressed();
+    }
+
+    public Affected_Person addInTable(Affected_Person item) throws ExecutionException, InterruptedException {
+        Affected_Person entity = atable.insert(item).get();
+        return entity;
+    }
+
+
 
     private AsyncTask<Void, Void, Void> initLocalStore() throws MobileServiceLocalStoreException, ExecutionException, InterruptedException {
 
@@ -135,10 +184,14 @@ public class Delete_record extends AppCompatActivity {
 
                     Map<String, ColumnDataType> tableDefinition = new HashMap<String, ColumnDataType>();
                     tableDefinition.put("id", ColumnDataType.String);
-                    tableDefinition.put("dname", ColumnDataType.String);
+                    tableDefinition.put("name", ColumnDataType.String);
+                    tableDefinition.put("mobile",ColumnDataType.String);
+                    tableDefinition.put("latitute",ColumnDataType.String);
+                    tableDefinition.put("longitude",ColumnDataType.String);
+                    tableDefinition.put("disaster_id",ColumnDataType.String);
                     tableDefinition.put("complete", ColumnDataType.Boolean);
 
-                    localStore.defineTable("Disaster", tableDefinition);
+                    localStore.defineTable("Affected_Person", tableDefinition);
 
                     SimpleSyncHandler handler = new SimpleSyncHandler();
 
@@ -186,4 +239,27 @@ public class Delete_record extends AppCompatActivity {
         builder.setTitle(title);
         builder.create().show();
     }
+
+    @Override
+    public void onLocationChanged(Location location) {
+            lat.setText(location.getLatitude()+"");
+            lng.setText(location.getLongitude()+"");
+    }
+    
+    @Override
+    public void onProviderDisabled(String provider) {
+        Log.d("Latitude","disable");
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        Log.d("Latitude","enable");
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        Log.d("Latitude","status");
+    }
 }
+
+

@@ -35,7 +35,7 @@ public class Login extends AppCompatActivity {
                 startActivity(i);
             }
             else {
-                Intent i = new Intent(getApplicationContext(), ToDoActivity.class);
+                Intent i = new Intent(getApplicationContext(), User_awareness.class);
                 startActivity(i);
             }
         }
@@ -85,7 +85,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selector="";
-                Intent i = new Intent(getApplicationContext(),ToDoActivity.class);
+                Intent i = new Intent(getApplicationContext(),User_awareness.class);
                 i.putExtra("role",selector);
                 startActivity(i);
             }
@@ -170,7 +170,7 @@ public class Login extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        Intent i = new Intent(getApplicationContext(), ToDoActivity.class);
+                                        Intent i = new Intent(getApplicationContext(), User_awareness.class);
                                         i.putExtra("role",selector);
                                         startActivity(i);
                                     } else {

@@ -9,16 +9,15 @@
         app:showAsAction="ifRoom">
     </item>
 
-    <item android:id="@+id/add_disaster"
-        android:orderInCategory="101"
-        android:title="Add Disaster"
-        android:icon="@drawable/add"
-        app:showAsAction="ifRoom">
-    </item>
     <item android:id="@+id/logout"
         android:orderInCategory="101"
         android:title="Logout"
         android:icon="@drawable/logout"
         app:showAsAction="ifRoom">
     </item>
+    <item
+        android:id="@+id/add_disaster"
+        android:icon="@drawable/add"
+        android:orderInCategory="102"
+        android:title="Add Disaster"/>
 </menu>
