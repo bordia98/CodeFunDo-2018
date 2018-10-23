@@ -35,8 +35,13 @@
             android:name=".Sign_Up"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".Disaster_adding"
-            android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name=".Admin_Panel"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Add_Disaster"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

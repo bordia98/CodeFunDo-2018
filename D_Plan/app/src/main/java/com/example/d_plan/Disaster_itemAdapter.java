@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class Disaster_itemAdapter extends ArrayAdapter<Disaster_List> {
 
@@ -41,25 +43,43 @@ public class Disaster_itemAdapter extends ArrayAdapter<Disaster_List> {
             row = inflater.inflate(mLayoutResourceId, parent, false);
         }
 
-        row.setTag(currentItem);
-        final CheckBox checkBox = (CheckBox) row.findViewById(R.id.checkToDoItem);
-        checkBox.setText(currentItem.getText());
-        checkBox.setChecked(false);
-        checkBox.setEnabled(true);
 
-        checkBox.setOnClickListener(new View.OnClickListener() {
+        TextView dtype = (TextView) row.findViewById(R.id.dtype);
+        TextView dloc  = (TextView) row.findViewById(R.id.dloc);
+        try {
+            assert currentItem != null;
+            dtype.setText(currentItem.getText_name());
+            dloc.setText(currentItem.getText_place());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
+        dtype.setTag(position);
+        dtype.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0) {
-                if (checkBox.isChecked()) {
-                    checkBox.setEnabled(false);
-                    if (mContext instanceof ToDoActivity) {
-                        Disaster_adding activity = (Disaster_adding) mContext;
-                        activity.checkItem(currentItem);
-                    }
-                }
+            public void onClick(View v) {
+                Toast.makeText(mContext,currentItem.getId(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,currentItem.getText_place(),Toast.LENGTH_SHORT).show();
             }
         });
+//        row.setTag(currentItem);
+//        final CheckBox checkBox = (CheckBox) row.findViewById(R.id.checkToDoItem);
+//        checkBox.setText(currentItem.getText());
+//        checkBox.setChecked(false);
+//        checkBox.setEnabled(true);
+//
+//        checkBox.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View arg0) {
+//                if (checkBox.isChecked()) {
+//                    checkBox.setEnabled(false);
+//                    if (mContext instanceof Admin_Panel) {
+//                        Admin_Panel activity = (Admin_Panel) mContext;
+//                        activity.checkItem(currentItem);
+//                    }
+//                }
+//            }
+//        });
 
         return row;
     }

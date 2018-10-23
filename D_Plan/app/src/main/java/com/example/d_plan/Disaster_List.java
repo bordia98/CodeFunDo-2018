@@ -29,7 +29,7 @@ public class Disaster_List {
 
     @Override
     public String toString() {
-        return getText();
+        return getText_name();
     }
 
     /**
@@ -48,10 +48,13 @@ public class Disaster_List {
     /**
      * Returns the item text
      */
-    public String getText() {
+    public String getText_name() {
         return dname;
     }
 
+    public String getText_place(){
+        return dplace;
+    }
     /**
      * Sets the item text
      *

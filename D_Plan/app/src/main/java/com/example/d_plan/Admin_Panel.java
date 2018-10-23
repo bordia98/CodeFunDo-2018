@@ -2,10 +2,13 @@ package com.example.d_plan;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,56 +44,24 @@ import java.util.concurrent.TimeUnit;
 
 import static com.microsoft.windowsazure.mobileservices.table.query.QueryOperations.val;
 
-public class Disaster_adding extends AppCompatActivity {
-    /**
-     * Mobile Service Client reference
-     */
+
+public class Admin_Panel extends AppCompatActivity {
+
     private MobileServiceClient mClient;
-
-    /**
-     * Mobile Service Table used to access data
-     */
     private MobileServiceTable<Disaster_List> dtable;
-
-
-    //Offline Sync
-    /**
-     * Mobile Service Table used to access and Sync data
-     */
-    //private MobileServiceSyncTable<ToDoItem> mToDoTable;
-
-    /**
-     * Adapter to sync the items list with the view
-     */
     private Disaster_itemAdapter mAdapter;
-
-    /**
-     * EditText containing the "New To Do" text
-     */
-    private EditText mTextNewToDo;
-
-    /**
-     * Progress spinner to use for table operations
-     */
     private ProgressBar mProgressBar;
-
-    /**
-     * Initializes the activity
-     */
-
     String role;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_disaster_adding);
+        setContentView(R.layout.admin_panel);
+        Toolbar toolbar =(Toolbar)findViewById(R.id.my_toolbar);
+        assert toolbar != null;
+        toolbar.setTitle("Admin Panel");
+        toolbar.getOverflowIcon().setColorFilter(ContextCompat.getColor(this, R.color.common_google_signin_btn_text_light_default), PorterDuff.Mode.SRC_ATOP);
+        setSupportActionBar(toolbar);
 
-        Button logout = (Button)findViewById(R.id.logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logout_here();
-            }
-        });
         mProgressBar = (ProgressBar) findViewById(R.id.loadingProgressBar);
         // Initialize the progress bar
         mProgressBar.setVisibility(ProgressBar.GONE);
@@ -99,14 +70,8 @@ public class Disaster_adding extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),role,Toast.LENGTH_SHORT).show();
 
         try {
-            // Create the Mobile Service Client instance, using the provided
+            mClient = new MobileServiceClient("https://d-plan.azurewebsites.net", this).withFilter(new Admin_Panel.ProgressFilter());
 
-            // Mobile Service URL and key
-            mClient = new MobileServiceClient(
-                    "https://d-plan.azurewebsites.net",
-                    this).withFilter(new Disaster_adding.ProgressFilter());
-
-            // Extend timeout from default of 10s to 20s
             mClient.setAndroidHttpClientFactory(new OkHttpClientFactory() {
                 @Override
                 public OkHttpClient createOkHttpClient() {
@@ -117,20 +82,14 @@ public class Disaster_adding extends AppCompatActivity {
                 }
             });
 
-            // Get the Mobile Service Table instance to use
 
             dtable = mClient.getTable(Disaster_List.class);
 
-            // Offline Sync
-            //mToDoTable = mClient.getSyncTable("ToDoItem", ToDoItem.class);
-
-            //Init local storage
             initLocalStore().get();
 
-            mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
 
             // Create an adapter to bind the items with the view
-            mAdapter = new Disaster_itemAdapter(this, R.layout.row_list_to_do);
+            mAdapter = new Disaster_itemAdapter(this, R.layout.dname_layout);
             ListView listViewToDo = (ListView) findViewById(R.id.listViewToDo);
             listViewToDo.setAdapter(mAdapter);
 
@@ -144,6 +103,7 @@ public class Disaster_adding extends AppCompatActivity {
         }
     }
 
+
     private void logout_here() {
         try {
             FirebaseAuth mauth = FirebaseAuth.getInstance();
@@ -156,33 +116,28 @@ public class Disaster_adding extends AppCompatActivity {
         }
     }
 
-    /**
-     * Initializes the activity menu
-     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
+        getMenuInflater().inflate(R.menu.admin_menu, menu);
         return true;
     }
 
-    /**
-     * Select an option from the menu
-     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_refresh) {
             refreshItemsFromTable();
         }
+        if(item.getItemId() == R.id.add_disaster){
+            Intent i = new Intent(getApplicationContext(),Add_Disaster.class);
+            startActivity(i);
+        }
 
+        if(item.getItemId() == R.id.logout){
+            logout_here();
+        }
         return true;
     }
 
-    /**
-     * Mark an item as completed
-     *
-     * @param item
-     *            The item to mark
-     */
     public void checkItem(final Disaster_List item) {
         if (mClient == null) {
             return;
@@ -212,79 +167,13 @@ public class Disaster_adding extends AppCompatActivity {
                 return null;
             }
         };
-
         runAsyncTask(task);
-
     }
 
-    /**
-     * Mark an item as completed in the Mobile Service Table
-     *
-     * @param item
-     *            The item to mark
-     */
     public void checkItemInTable(Disaster_List item) throws ExecutionException, InterruptedException {
         dtable.update(item).get();
     }
 
-    /**
-     * Add a new item
-     *
-     * @param view
-     *            The view that originated the call
-     */
-    public void addItem(View view) {
-        if (mClient == null) {
-            return;
-        }
-
-        // Create a new item
-        final Disaster_List item = new Disaster_List();
-
-        item.setText(mTextNewToDo.getText().toString(),"kerela");
-        item.setComplete(false);
-
-        // Insert the new item
-        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
-            @Override
-            protected Void doInBackground(Void... params) {
-                try {
-                    final Disaster_List entity = addItemInTable(item);
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if(!entity.isComplete()){
-                                mAdapter.add(entity);
-                            }
-                        }
-                    });
-                } catch (final Exception e) {
-                    createAndShowDialogFromTask(e, "Error");
-                }
-                return null;
-            }
-        };
-
-        runAsyncTask(task);
-
-        mTextNewToDo.setText("");
-    }
-
-    /**
-     * Add an item to the Mobile Service Table
-     *
-     * @param item
-     *            The item to Add
-     */
-    public Disaster_List addItemInTable(Disaster_List item) throws ExecutionException, InterruptedException {
-        Disaster_List entity = dtable.insert(item).get();
-        return entity;
-    }
-
-    /**
-     * Refresh the list with the items in the Table
-     */
     private void refreshItemsFromTable() {
 
         // Get the items that weren't marked as completed and add them in the
@@ -321,34 +210,11 @@ public class Disaster_adding extends AppCompatActivity {
         runAsyncTask(task);
     }
 
-    /**
-     * Refresh the list with the items in the Mobile Service Table
-     */
-
     private List<Disaster_List> refreshItemsFromMobileServiceTable() throws ExecutionException, InterruptedException {
         return dtable.where().field("complete").
                 eq(val(false)).execute().get();
     }
 
-    //Offline Sync
-    /**
-     * Refresh the list with the items in the Mobile Service Sync Table
-     */
-    /*private List<ToDoItem> refreshItemsFromMobileServiceTableSyncTable() throws ExecutionException, InterruptedException {
-        //sync the data
-        sync().get();
-        Query query = QueryOperations.field("complete").
-                eq(val(false));
-        return mToDoTable.read(query).get();
-    }*/
-
-    /**
-     * Initialize local storage
-     * @return
-     * @throws MobileServiceLocalStoreException
-     * @throws ExecutionException
-     * @throws InterruptedException
-     */
     private AsyncTask<Void, Void, Void> initLocalStore() throws MobileServiceLocalStoreException, ExecutionException, InterruptedException {
 
         AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
@@ -385,38 +251,6 @@ public class Disaster_adding extends AppCompatActivity {
         return runAsyncTask(task);
     }
 
-    //Offline Sync
-    /**
-     * Sync the current context and the Mobile Service Sync Table
-     * @return
-     */
-    /*
-    private AsyncTask<Void, Void, Void> sync() {
-        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
-            @Override
-            protected Void doInBackground(Void... params) {
-                try {
-                    MobileServiceSyncContext syncContext = mClient.getSyncContext();
-                    syncContext.push().get();
-                    mToDoTable.pull(null).get();
-                } catch (final Exception e) {
-                    createAndShowDialogFromTask(e, "Error");
-                }
-                return null;
-            }
-        };
-        return runAsyncTask(task);
-    }
-    */
-
-    /**
-     * Creates a dialog and shows it
-     *
-     * @param exception
-     *            The exception to show in the dialog
-     * @param title
-     *            The dialog title
-     */
     private void createAndShowDialogFromTask(final Exception exception, String title) {
         runOnUiThread(new Runnable() {
             @Override
@@ -426,15 +260,6 @@ public class Disaster_adding extends AppCompatActivity {
         });
     }
 
-
-    /**
-     * Creates a dialog and shows it
-     *
-     * @param exception
-     *            The exception to show in the dialog
-     * @param title
-     *            The dialog title
-     */
     private void createAndShowDialog(Exception exception, String title) {
         Throwable ex = exception;
         if(exception.getCause() != null){
@@ -443,14 +268,6 @@ public class Disaster_adding extends AppCompatActivity {
         createAndShowDialog(ex.getMessage(), title);
     }
 
-    /**
-     * Creates a dialog and shows it
-     *
-     * @param message
-     *            The dialog message
-     * @param title
-     *            The dialog title
-     */
     private void createAndShowDialog(final String message, final String title) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -459,11 +276,6 @@ public class Disaster_adding extends AppCompatActivity {
         builder.create().show();
     }
 
-    /**
-     * Run an ASync task on the corresponding executor
-     * @param task
-     * @return
-     */
     private AsyncTask<Void, Void, Void> runAsyncTask(AsyncTask<Void, Void, Void> task) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             return task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -513,4 +325,5 @@ public class Disaster_adding extends AppCompatActivity {
             return resultFuture;
         }
     }
+
 }

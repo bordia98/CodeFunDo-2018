@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.d_plan.Sign_Up"
-    android:background="#f6f500">
+    android:background="#e6e6e6">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_signuptoolbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#00b0c8"
+        android:background="#002e4d"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         >
         <TextView
@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:text="Sign Up"
             android:gravity = "center"
-            android:textColor="#000"
+            android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:textSize="30dp"
             android:id="@+id/toolbar_title" />
@@ -104,15 +104,18 @@
             android:layout_marginRight="130dp"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="130dp"
-            android:background="#ADD8E6"
+            android:background="#002e4d"
+            android:textColor="#FFFFFF"
             android:text="Sign up" />
 
         <ProgressBar
             android:id="@+id/pgbar"
             style="?android:attr/progressBarStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:indeterminateTintMode="src_atop"
+            android:indeterminateTint="#002e4d"
+            android:layout_height="28dp"
             />
 
 

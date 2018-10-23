@@ -26,10 +26,18 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser!=null){
-            Intent i = new Intent(getApplicationContext(),ToDoActivity.class);
-            startActivity(i);
+            String mailid = currentUser.getEmail();
+            if(mailid.equals("bhavyabordia@gmail.com")){
+                Intent i = new Intent(getApplicationContext(),Admin_Panel.class);
+                startActivity(i);
+            }
+            else {
+                Intent i = new Intent(getApplicationContext(), ToDoActivity.class);
+                startActivity(i);
+            }
         }
     }
 
@@ -138,7 +146,7 @@ public class Login extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        Intent i = new Intent(getApplicationContext(), Disaster_adding.class);
+                                        Intent i = new Intent(getApplicationContext(), Admin_Panel.class);
                                         i.putExtra("role",selector);
                                         startActivity(i);
                                     } else {
