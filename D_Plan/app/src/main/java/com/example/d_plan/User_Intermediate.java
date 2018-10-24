@@ -57,8 +57,9 @@ public class User_Intermediate extends AppCompatActivity {
         helpcenters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //do something
-            }
+                Intent o = new Intent(getApplicationContext(),Users_Nearby.class);
+                o.putExtra("id",id);
+                startActivity(o);            }
         });
     }
 }

@@ -92,21 +92,17 @@ public class mycenter extends AppCompatActivity {
             // Load the items from the Mobile Service
             refreshItemsFromTable();
 
-//            listViewToDo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                @Override
-//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                    TextView name = (TextView) view.findViewById(R.id.dtype);
-//                    TextView loc = (TextView) view.findViewById(R.id.dloc);
-//                    TextView did = (TextView) view.findViewById(R.id.did);
-//
-//                    Intent i = new Intent(getApplicationContext(),User_Intermediate.class);
-//                    i.putExtra("dtype",name.getText().toString());
-//                    i.putExtra("dloc",loc.getText().toString());
-//                    i.putExtra("id",did.getText().toString());
-//                    startActivity(i);
-//                }
-//            });
+            listViewToDo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    TextView gid = (TextView) view.findViewById(R.id.id);
+                    Intent i = new Intent(getApplicationContext(),update_center.class);
+                    i.putExtra("gid",gid.getText().toString());
+                    i.putExtra("did",did);
+                    startActivity(i);
+                }
+            });
 
         } catch (MalformedURLException e) {
             createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
