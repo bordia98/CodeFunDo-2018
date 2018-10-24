@@ -50,7 +50,9 @@ public class Helper_Intermediate extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Do Something
+                Intent o = new Intent(getApplicationContext(),mycenter.class);
+                o.putExtra("id",id);
+                startActivity(o);
             }
         });
 

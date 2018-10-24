@@ -101,6 +101,30 @@ public class Local_help {
         mComplete = complete;
     }
 
+    public void updatecurrent(Integer count){
+        curr_hold = count;
+    }
+
+    public  void updatelatitude(String lati){
+        glat = lati;
+    }
+
+    public void updatelongitude(String longi){
+        glong = longi;
+    }
+
+    public void updatename(String name){
+        gname = name;
+    }
+
+    public void updatenumber(String number){
+        gmob = number;
+    }
+
+    public void updatemax(Integer max){
+        max_hold = max;
+    }
+
     @Override
     public boolean equals(Object o) {
         return o instanceof Local_help && ((Local_help) o).gid == gid;
