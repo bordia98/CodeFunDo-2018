@@ -62,7 +62,6 @@ public class local_helper extends AppCompatActivity {
         toolbar.getOverflowIcon().setColorFilter(ContextCompat.getColor(this, R.color.common_google_signin_btn_text_light_default), PorterDuff.Mode.SRC_ATOP);
         setSupportActionBar(toolbar);
         mProgressBar = (ProgressBar) findViewById(R.id.loadingProgressBar);
-        // Initialize the progress bar
         mProgressBar.setVisibility(ProgressBar.GONE);
 
         try {
@@ -99,7 +98,11 @@ public class local_helper extends AppCompatActivity {
                     TextView loc = (TextView) view.findViewById(R.id.dloc);
                     TextView did = (TextView) view.findViewById(R.id.did);
 
-                    // Here the code will change
+                    Intent i = new Intent(getApplicationContext(),Helper_Intermediate.class);
+                    i.putExtra("dtype",name.getText().toString());
+                    i.putExtra("dloc",loc.getText().toString());
+                    i.putExtra("id",did.getText().toString());
+                    startActivity(i);
                 }
             });
 

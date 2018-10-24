@@ -1,0 +1,108 @@
+package com.example.d_plan;
+
+public class Local_help {
+
+    @com.google.gson.annotations.SerializedName("username")
+    private String gname;
+
+    @com.google.gson.annotations.SerializedName("user_email")
+    private String gemail;
+
+    @com.google.gson.annotations.SerializedName("id")
+    private String gid;
+
+    @com.google.gson.annotations.SerializedName("mob_num")
+    private String gmob;
+
+    @com.google.gson.annotations.SerializedName("latitude")
+    private String glat;
+
+    @com.google.gson.annotations.SerializedName("longitude")
+    private String glong;
+
+    @com.google.gson.annotations.SerializedName("Disaster_id")
+    private String gdid;
+
+    @com.google.gson.annotations.SerializedName("capacity_hold")
+    private int max_hold;
+
+    @com.google.gson.annotations.SerializedName("current_hold")
+    private int curr_hold;
+
+    @com.google.gson.annotations.SerializedName("complete")
+    private boolean mComplete;
+
+    public Local_help() {
+
+    }
+
+    @Override
+    public String toString() {
+        return getText_name();
+    }
+
+    public Local_help(String name, String mob, String lat, String lng, String did,int maxhold,int currhold, String email,String id) {
+        this.setText(name,mob,lat,lng,did,maxhold,currhold,email);
+        this.setId(id);
+    }
+
+    public String getText_name() {
+        return gname;
+    }
+
+    public String getText_mob(){
+        return gmob;
+    }
+
+    public String getText_lat() {
+        return glat;
+    }
+
+    public String getText_long(){
+        return glong;
+    }
+
+    public String getText_did(){
+        return gdid;
+    }
+
+    public int getText_currentcapacity(){
+        return curr_hold;
+    }
+
+    public int getText_maxcapacity(){
+        return max_hold;
+    }
+
+    public final void setText(String name,String mob,String lat,String lng,String did,Integer maxcap,Integer currentcap,String email) {
+        gname = name;
+        gmob = mob;
+        glat = lat;
+        glong = lng;
+        gdid = did;
+        curr_hold = currentcap;
+        max_hold = maxcap;
+        gemail = email;
+    }
+
+    public String getId() {
+        return gid;
+    }
+
+    public final void setId(String id) {
+        gid = id;
+    }
+
+    public boolean isComplete() {
+        return mComplete;
+    }
+
+    public void setComplete(boolean complete) {
+        mComplete = complete;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof Local_help && ((Local_help) o).gid == gid;
+    }
+}
