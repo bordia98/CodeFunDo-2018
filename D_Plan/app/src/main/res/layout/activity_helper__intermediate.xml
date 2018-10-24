@@ -25,59 +25,66 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:background="#e6e6e6"
+            android:background="@drawable/border"
             android:orientation="vertical"
             android:padding="6dip" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:padding="10dp">
-
-                <TextView
+                android:orientation="vertical"
+                android:layout_margin="6dp"
+                android:background="#e6e6e6">
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center_horizontal"
-                    android:id="@+id/dtype"
-                    android:textStyle="bold"
-                    android:textSize="25dp"
-                    android:textColor="#000000"
-                    android:padding="5dp"/>
-            </LinearLayout>
+                    android:layout_margin="5dp"
+                    android:padding="10dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:padding="10dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/dtype"
+                        android:textStyle="bold"
+                        android:textSize="25dp"
+                        android:textColor="#ff3300"
+                        android:padding="5dp"/>
+                </LinearLayout>
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center_horizontal"
-                    android:text="Place:"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="#000000"
-                    android:padding="5dp"/>
+                    android:layout_margin="5dp"
+                    android:padding="10dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center_horizontal"
-                    android:text="__________"
-                    android:id="@+id/dloc"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:textSize="15dp"
-                    android:textColor="#000000"
-                    android:padding="5dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:text="Place:"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="#000000"
+                        android:padding="5dp"/>
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:text="__________"
+                        android:id="@+id/dloc"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="#00b300"
+                        android:padding="5dp"/>
+
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 

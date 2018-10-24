@@ -55,7 +55,7 @@ public class update_center extends AppCompatActivity implements LocationListener
 
     private MobileServiceClient mClient;
     private MobileServiceTable<Local_help> ltable;
-    EditText mob, name,currcap,maxcap;
+    EditText mob, name,currcap,maxcap,gplace;
     TextView lat,lng;
     Button makecenter;
     String did,gid;
@@ -103,6 +103,7 @@ public class update_center extends AppCompatActivity implements LocationListener
             mob = (EditText) findViewById(R.id.number);
             maxcap = (EditText)findViewById(R.id.max_capacity);
             currcap = (EditText)findViewById(R.id.current_count);
+            gplace = (EditText)findViewById(R.id.gplace);
             makecenter = (Button) findViewById(R.id.makecenter);
 
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -149,7 +150,7 @@ public class update_center extends AppCompatActivity implements LocationListener
         workon_item.updatename(name.getText().toString());
         workon_item.updatenumber(mob.getText().toString());
         workon_item.updatemax(Integer.parseInt(maxcap.getText().toString()));
-
+        workon_item.updateplace(gplace.getText().toString());
         AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... params) {
@@ -198,6 +199,7 @@ public class update_center extends AppCompatActivity implements LocationListener
                                     mob.setText(workon_item.getText_mob());
                                     currcap.setText(workon_item.getText_currentcapacity()+"");
                                     maxcap.setText(workon_item.getText_maxcapacity()+"");
+                                    gplace.setText(workon_item.getPlace());
                                     break;
                                 }
                             }

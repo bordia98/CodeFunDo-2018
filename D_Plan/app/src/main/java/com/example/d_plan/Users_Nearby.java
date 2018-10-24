@@ -58,7 +58,7 @@ public class Users_Nearby extends AppCompatActivity {
         setContentView(R.layout.activity_users__nearby);
         Toolbar toolbar =(Toolbar)findViewById(R.id.my_toolbar);
         assert toolbar != null;
-        toolbar.setTitle("Current Disasters");
+        toolbar.setTitle("NearBy Help Centers");
         toolbar.getOverflowIcon().setColorFilter(ContextCompat.getColor(this, R.color.common_google_signin_btn_text_light_default), PorterDuff.Mode.SRC_ATOP);
         setSupportActionBar(toolbar);
         mProgressBar = (ProgressBar) findViewById(R.id.loadingProgressBar);

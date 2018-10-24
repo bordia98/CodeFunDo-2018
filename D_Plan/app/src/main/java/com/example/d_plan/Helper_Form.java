@@ -43,7 +43,7 @@ public class Helper_Form extends AppCompatActivity implements LocationListener {
 
     private MobileServiceClient mClient;
     private MobileServiceTable<Local_help> ltable;
-    EditText mob, name,currcap,maxcap;
+    EditText mob, name,currcap,maxcap,gplace;
     TextView lat,lng;
     Button makecenter;
     String did;
@@ -86,6 +86,7 @@ public class Helper_Form extends AppCompatActivity implements LocationListener {
             mob = (EditText) findViewById(R.id.number);
             maxcap = (EditText)findViewById(R.id.max_capacity);
             currcap = (EditText)findViewById(R.id.current_count);
+            gplace = (EditText)findViewById(R.id.gplace);
 
             makecenter = (Button) findViewById(R.id.makecenter);
 
@@ -138,7 +139,9 @@ public class Helper_Form extends AppCompatActivity implements LocationListener {
                 did,
                 Integer.parseInt(maxcap.getText().toString()),
                 Integer.parseInt(currcap.getText().toString()),
-                mail
+                mail,
+                gplace.getText().toString(),
+                false
         );
 
         item.setComplete(false);
@@ -163,6 +166,7 @@ public class Helper_Form extends AppCompatActivity implements LocationListener {
         lng.setText("");
         currcap.setText("");
         maxcap.setText("");
+        gplace.setText("");
         Toast.makeText(getApplicationContext(),"Your Request is made .",Toast.LENGTH_SHORT).show();
         Intent i = new Intent(getApplicationContext(),local_helper.class);
         i.putExtra("role","local");

@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:background="#e6e6e6"
+        android:background="@drawable/border"
         android:orientation="vertical"
         android:padding="6dip" >
 
@@ -36,7 +36,7 @@
                 android:id="@+id/dtype"
                 android:textStyle="bold"
                 android:textSize="25dp"
-                android:textColor="#000000"
+                android:textColor="#ff3300"
                 android:padding="5dp"/>
         </LinearLayout>
 
@@ -68,7 +68,7 @@
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:textSize="15dp"
-                android:textColor="#000000"
+                android:textColor="#00b300"
                 android:padding="5dp"/>
 
         </LinearLayout>

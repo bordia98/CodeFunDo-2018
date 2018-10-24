@@ -29,8 +29,15 @@ public class Local_help {
     @com.google.gson.annotations.SerializedName("current_hold")
     private int curr_hold;
 
+    @com.google.gson.annotations.SerializedName("place")
+    private String gplace;
+
     @com.google.gson.annotations.SerializedName("complete")
     private boolean mComplete;
+
+    @com.google.gson.annotations.SerializedName("Authorized")
+    private boolean gauth;
+
 
     public Local_help() {
 
@@ -41,8 +48,8 @@ public class Local_help {
         return getText_name();
     }
 
-    public Local_help(String name, String mob, String lat, String lng, String did,int maxhold,int currhold, String email,String id) {
-        this.setText(name,mob,lat,lng,did,maxhold,currhold,email);
+    public Local_help(String name, String mob, String lat, String lng, String did,int maxhold,int currhold, String email,String place,Boolean auth,String id) {
+        this.setText(name,mob,lat,lng,did,maxhold,currhold,email,place,auth);
         this.setId(id);
     }
 
@@ -74,7 +81,15 @@ public class Local_help {
         return max_hold;
     }
 
-    public final void setText(String name,String mob,String lat,String lng,String did,Integer maxcap,Integer currentcap,String email) {
+    public String getPlace(){
+        return gplace;
+    }
+
+    public boolean getAuth(){
+        return gauth;
+    }
+
+    public final void setText(String name,String mob,String lat,String lng,String did,Integer maxcap,Integer currentcap,String email,String place,Boolean auth) {
         gname = name;
         gmob = mob;
         glat = lat;
@@ -83,6 +98,8 @@ public class Local_help {
         curr_hold = currentcap;
         max_hold = maxcap;
         gemail = email;
+        gplace = place;
+        gauth = auth;
     }
 
     public String getId() {
@@ -123,6 +140,14 @@ public class Local_help {
 
     public void updatemax(Integer max){
         max_hold = max;
+    }
+
+    public void updateplace(String place){
+        gplace = place;
+    }
+
+    public void update_auth(Boolean auth){
+        gauth = auth;
     }
 
     @Override

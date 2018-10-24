@@ -45,11 +45,20 @@ public class center_view_adapter extends ArrayAdapter<Local_help>{
         TextView curr = (TextView) row.findViewById(R.id.curr);
         TextView max  = (TextView) row.findViewById(R.id.max);
         TextView id = (TextView) row.findViewById(R.id.id);
+        TextView place = (TextView) row.findViewById(R.id.location);
+        TextView auth = (TextView) row.findViewById(R.id.status);
         try {
             assert currentItem != null;
             gname.setText(currentItem.getText_name());
             curr.setText(currentItem.getText_currentcapacity()+"");
             max.setText(currentItem.getText_maxcapacity()+"");
+            place.setText(currentItem.getPlace());
+            if(currentItem.getAuth()==false){
+                auth.setText("NO");
+            }
+            else{
+                auth.setText("YES");
+            }
             id.setText(currentItem.getId());
         }catch (Exception e){
             e.printStackTrace();
