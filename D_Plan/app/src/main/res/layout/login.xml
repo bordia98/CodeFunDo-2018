@@ -107,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="130dp"
             android:layout_marginRight="130dp"
-            android:background="#002e4d"
+            android:background="@drawable/button"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:text="Login " />
@@ -161,7 +161,7 @@
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:padding="5dp"
-            android:background="#002e4d"
+            android:background="@drawable/button"
             />
 
     </LinearLayout>

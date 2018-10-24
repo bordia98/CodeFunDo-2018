@@ -49,7 +49,9 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
-        android:padding="6dip">
+        android:layout_margin="20dp"
+        android:background="@drawable/border"
+        android:padding="20dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -67,7 +69,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="Disaster Name"
-            android:textColor="#000000"/>
+            android:textColor="#00b300"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -85,18 +87,17 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="Place of Occuring"
-            android:textColor="#000000"/>
-
-        <Button
-            android:id="@+id/add_new_disaster"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:background="#002e4d"
-            android:padding="10dp"
-            android:text="@string/add_button_text"
-            android:textColor="#FFFFFF"
-            android:textSize="25dp" />
+            android:textColor="#00b300"/>
     </LinearLayout>
+    <Button
+        android:id="@+id/add_new_disaster"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:background="@drawable/button"
+        android:padding="10dp"
+        android:text="@string/add_button_text"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp" />
 </LinearLayout>

@@ -52,6 +52,39 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:background="#e6e6e6">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:text="Contact No."
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="#002e4d"
+                        android:padding="5dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:text="________"
+                        android:id="@+id/contactno"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textSize="15dp"
+                        android:textColor="#ff66cc"
+                        android:padding="5dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:background="#e6e6e6"
                     >
 

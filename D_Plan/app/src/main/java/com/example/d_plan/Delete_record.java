@@ -81,6 +81,16 @@ public class Delete_record extends AppCompatActivity {
                     delete_record();
                 }
             });
+
+            Button seecamps = (Button)findViewById(R.id.camps);
+            seecamps.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getApplicationContext(),View_Camps.class);
+                    i.putExtra("id",id);
+                    startActivity(i);
+                }
+            });
         } catch (MalformedURLException e) {
             createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
         } catch (Exception e){

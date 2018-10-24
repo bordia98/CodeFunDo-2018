@@ -8,6 +8,9 @@ public class Affected_Person {
     @com.google.gson.annotations.SerializedName("id")
     private String pid;
 
+    @com.google.gson.annotations.SerializedName("place")
+    private String pplace;
+
     @com.google.gson.annotations.SerializedName("Mobile_number")
     private String pmob;
 
@@ -32,8 +35,8 @@ public class Affected_Person {
         return getText_name();
     }
 
-    public Affected_Person(String name, String mob, String lat, String lng, String did, String id) {
-        this.setText(name,mob,lat,lng,did);
+    public Affected_Person(String name, String mob, String lat, String lng, String did,String place, String id) {
+        this.setText(name,mob,lat,lng,did,place);
         this.setId(id);
     }
 
@@ -57,12 +60,17 @@ public class Affected_Person {
         return pdid;
     }
 
-    public final void setText(String name,String mob,String lat,String lng,String did) {
+    public String getPlace(){
+        return pplace;
+    }
+
+    public final void setText(String name,String mob,String lat,String lng,String did,String place) {
         pname = name;
         pmob = mob;
         plat = lat;
         plong = lng;
         pdid = did;
+        pplace = place;
     }
 
     public String getId() {

@@ -41,7 +41,7 @@ import static android.location.LocationManager.GPS_PROVIDER;
 public class Share_Activity extends AppCompatActivity implements LocationListener {
     private MobileServiceClient mClient;
     private MobileServiceTable<Affected_Person> atable;
-    EditText  mob, name;
+    EditText  mob, name,place;
     TextView lat,lng;
     Button shareloc;
     String did;
@@ -79,7 +79,7 @@ public class Share_Activity extends AppCompatActivity implements LocationListene
             lng = (TextView) findViewById(R.id.longitude);
             name = (EditText) findViewById(R.id.name);
             mob = (EditText) findViewById(R.id.number);
-
+            place = (EditText)findViewById(R.id.pplace);
             shareloc = (Button) findViewById(R.id.sharelocation);
 
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -128,7 +128,9 @@ public class Share_Activity extends AppCompatActivity implements LocationListene
                 mob.getText().toString(),
                 lat.getText().toString(),
                 lng.getText().toString(),
-                did);
+                did,
+                place.getText().toString()
+        );
 
         item.setComplete(false);
 
@@ -150,6 +152,7 @@ public class Share_Activity extends AppCompatActivity implements LocationListene
         mob.setText("");
         lat.setText("");
         lng.setText("");
+        place.setText("");
         Toast.makeText(getApplicationContext(),"Your Location is Shared Successfully. Please wait to get Contacted",Toast.LENGTH_SHORT).show();
         Intent i = new Intent(getApplicationContext(),User_awareness.class);
         i.putExtra("role","");
@@ -168,8 +171,6 @@ public class Share_Activity extends AppCompatActivity implements LocationListene
         Affected_Person entity = atable.insert(item).get();
         return entity;
     }
-
-
 
     private AsyncTask<Void, Void, Void> initLocalStore() throws MobileServiceLocalStoreException, ExecutionException, InterruptedException {
 

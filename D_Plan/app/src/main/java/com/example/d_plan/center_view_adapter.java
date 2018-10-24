@@ -47,6 +47,7 @@ public class center_view_adapter extends ArrayAdapter<Local_help>{
         TextView id = (TextView) row.findViewById(R.id.id);
         TextView place = (TextView) row.findViewById(R.id.location);
         TextView auth = (TextView) row.findViewById(R.id.status);
+        TextView contactno = (TextView) row.findViewById(R.id.contactno);
         try {
             assert currentItem != null;
             gname.setText(currentItem.getText_name());
@@ -59,6 +60,7 @@ public class center_view_adapter extends ArrayAdapter<Local_help>{
             else{
                 auth.setText("YES");
             }
+            contactno.setText(currentItem.getText_mob());
             id.setText(currentItem.getId());
         }catch (Exception e){
             e.printStackTrace();

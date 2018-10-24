@@ -26,8 +26,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="20dp"
                 android:orientation="vertical"
                 android:padding="6dip">
 
@@ -37,7 +35,7 @@
                     android:layout_margin="2dp"
                     android:padding="5dp"
                     android:text="Enter  Your Name"
-                    android:textColor="#000000"
+                    android:textColor="#002e4d"
                     android:textSize="15dp" />
 
                 <EditText
@@ -47,7 +45,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Name"
-                    android:textColor="#000000"/>
+                    android:textColor="#00b300"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -55,7 +53,7 @@
                     android:layout_margin="2dp"
                     android:padding="5dp"
                     android:text="Enter your Mobile Number"
-                    android:textColor="#000000"
+                    android:textColor="#002e4d"
                     android:textSize="15dp" />
 
                 <EditText
@@ -65,7 +63,25 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Contact Number"
-                    android:textColor="#000000" />
+                    android:textColor="#00b300" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:padding="5dp"
+                    android:text="Enter your Place"
+                    android:textColor="#002e4d"
+                    android:textSize="15dp" />
+
+                <EditText
+                    android:id="@+id/pplace"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Place"
+                    android:textColor="#00b300" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -73,7 +89,7 @@
                     android:layout_margin="2dp"
                     android:padding="5dp"
                     android:text="Please Wait while we get your location"
-                    android:textColor="#000000"
+                    android:textColor="#002e4d"
                     android:textSize="15dp" />
 
 
@@ -86,7 +102,7 @@
                     android:textSize="15dp"
                     android:padding="5dp"
                     android:hint="Latitude"
-                    android:textColor="#000000"/>
+                    android:textColor="#00b300"/>
 
                 <TextView
                     android:id="@+id/longitude"
@@ -97,7 +113,7 @@
                     android:textSize="15dp"
                     android:padding="5dp"
                     android:hint="Longitude"
-                    android:textColor="#000000" />
+                    android:textColor="#00b300" />
 
                 <Button
                     android:id="@+id/sharelocation"
@@ -105,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="10dp"
-                    android:background="#002e4d"
+                    android:background="@drawable/button"
                     android:padding="10dp"
                     android:text="Share Location"
                     android:textColor="#FFFFFF"
