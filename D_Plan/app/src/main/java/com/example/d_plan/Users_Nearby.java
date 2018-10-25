@@ -1,15 +1,21 @@
 package com.example.d_plan;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -45,6 +51,7 @@ public class Users_Nearby extends AppCompatActivity {
     private center_view_adapter mAdapter;
     private ProgressBar mProgressBar;
     String did;
+    private HashMap<String,Local_help> map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,17 +92,22 @@ public class Users_Nearby extends AppCompatActivity {
             // Load the items from the Mobile Service
             refreshItemsFromTable();
 
-//            listViewToDo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                @Override
-//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                    TextView gid = (TextView) view.findViewById(R.id.id);
-//                    Intent i = new Intent(getApplicationContext(),update_center.class);
-//                    i.putExtra("gid",gid.getText().toString());
-//                    i.putExtra("did",did);
-//                    startActivity(i);
-//                }
-//            });
+            listViewToDo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    TextView ide = (TextView)view.findViewById(R.id.id);
+                    Local_help item = map.get(ide.getText().toString());
+                    String uri = "google.navigation:q="+item.getText_lat()+","+item.getText_long();
+                    Uri gmmIntentUri = Uri.parse(uri);
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
+                    if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(mapIntent);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"You have no application to view map",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
 
         } catch (MalformedURLException e) {
             createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
@@ -108,6 +120,7 @@ public class Users_Nearby extends AppCompatActivity {
 
         // Get the items that weren't marked as completed and add them in the
         // adapter
+        map=new HashMap<String,Local_help>();
 
         AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
             @Override
@@ -125,8 +138,10 @@ public class Users_Nearby extends AppCompatActivity {
                             mAdapter.clear();
 
                             for (Local_help item : results) {
-                                if( item.isComplete()==false && item.getAuth()==true)
+                                if( item.isComplete()==false && item.getAuth()==true) {
                                     mAdapter.add(item);
+                                    map.put(item.getId(),item);
+                                }
                             }
                         }
                     });
