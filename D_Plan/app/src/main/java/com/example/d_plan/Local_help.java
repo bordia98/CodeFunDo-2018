@@ -102,6 +102,10 @@ public class Local_help {
         gauth = auth;
     }
 
+    public String getemail() {
+        return gemail;
+    }
+
     public String getId() {
         return gid;
     }

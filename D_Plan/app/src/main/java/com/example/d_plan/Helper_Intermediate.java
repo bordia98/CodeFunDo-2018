@@ -15,7 +15,7 @@ public class Helper_Intermediate extends AppCompatActivity {
     String dtype,dloc,id;
     TextView tpye,loc;
 
-    Button update,newhelpcenter,helprequest;
+    Button update,newhelpcenter,helprequest,othercamps;
 
     @Override
     public void onBackPressed() {
@@ -47,6 +47,7 @@ public class Helper_Intermediate extends AppCompatActivity {
         update = (Button)findViewById(R.id.update);
         newhelpcenter = (Button) findViewById(R.id.organise);
         helprequest = (Button)findViewById(R.id.users);
+        othercamps = (Button)findViewById(R.id.othercamps);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +71,15 @@ public class Helper_Intermediate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent o = new Intent(getApplicationContext(),Help_Requests.class);
+                o.putExtra("id",id);
+                startActivity(o);
+            }
+        });
+
+        othercamps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent o = new Intent(getApplicationContext(),other_camps.class);
                 o.putExtra("id",id);
                 startActivity(o);
             }

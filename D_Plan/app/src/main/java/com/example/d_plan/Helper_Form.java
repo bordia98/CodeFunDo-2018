@@ -44,7 +44,7 @@ public class Helper_Form extends AppCompatActivity implements LocationListener {
     private MobileServiceClient mClient;
     private MobileServiceTable<Local_help> ltable;
     EditText mob, name,currcap,maxcap,gplace;
-    TextView lat,lng;
+    EditText lat,lng;
     Button makecenter;
     String did;
     private FirebaseAuth mAuth;
@@ -80,8 +80,8 @@ public class Helper_Form extends AppCompatActivity implements LocationListener {
 
             ltable = mClient.getTable(Local_help.class);
             initLocalStore().get();
-            lat = (TextView) findViewById(R.id.latitude);
-            lng = (TextView) findViewById(R.id.longitude);
+            lat = (EditText) findViewById(R.id.latitude);
+            lng = (EditText) findViewById(R.id.longitude);
             name = (EditText) findViewById(R.id.name);
             mob = (EditText) findViewById(R.id.number);
             maxcap = (EditText)findViewById(R.id.max_capacity);

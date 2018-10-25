@@ -154,7 +154,7 @@
                     android:textSize="15dp" />
 
 
-                <TextView
+                <EditText
                     android:id="@+id/latitude"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -165,7 +165,7 @@
                     android:textColor="#00b300"
                     android:textSize="15dp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/longitude"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
