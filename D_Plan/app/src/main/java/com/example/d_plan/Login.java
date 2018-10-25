@@ -31,12 +31,21 @@ public class Login extends AppCompatActivity {
         if(currentUser!=null){
             String mailid = currentUser.getEmail();
             if(mailid.equals("bhavyabordia@gmail.com")){
-                Intent i = new Intent(getApplicationContext(),Admin_Panel.class);
-                startActivity(i);
+                if(currentUser.isEmailVerified()) {
+                    Intent i = new Intent(getApplicationContext(), Admin_Panel.class);
+                    startActivity(i);
+                }else {
+                    Toast.makeText(getApplicationContext(),"Please verify your mail Address",Toast.LENGTH_SHORT).show();
+                }
             }
             else {
-                Intent i = new Intent(getApplicationContext(), local_helper.class);
-                startActivity(i);
+                if(currentUser.isEmailVerified()){
+                    Intent i = new Intent(getApplicationContext(), local_helper.class);
+                    startActivity(i);
+                }else{
+                    Toast.makeText(getApplicationContext(),"Please verify your mail Address",Toast.LENGTH_SHORT).show();
+                }
+
             }
         }
     }
@@ -146,9 +155,13 @@ public class Login extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        Intent i = new Intent(getApplicationContext(), Admin_Panel.class);
-                                        i.putExtra("role",selector);
-                                        startActivity(i);
+                                        if(checkverification()){
+                                            Intent i = new Intent(getApplicationContext(), Admin_Panel.class);
+                                            i.putExtra("role",selector);
+                                            startActivity(i);
+                                        }else{
+                                            Toast.makeText(getApplicationContext(),"Please verify your mail Address",Toast.LENGTH_SHORT).show();
+                                        }
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Please check your credentials", Toast.LENGTH_SHORT).show();
                                     }
@@ -170,9 +183,14 @@ public class Login extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        Intent i = new Intent(getApplicationContext(), local_helper.class);
-                                        i.putExtra("role",selector);
-                                        startActivity(i);
+                                        if(checkverification()){
+                                            Intent i = new Intent(getApplicationContext(), local_helper.class);
+                                            i.putExtra("role",selector);
+                                            startActivity(i);
+                                        }else{
+                                            Toast.makeText(getApplicationContext(),"Please verify your mail Address",Toast.LENGTH_SHORT).show();
+                                        }
+
                                     } else {
                                         Toast.makeText(getApplicationContext(), "Please check your credentials", Toast.LENGTH_SHORT).show();
                                     }
@@ -182,6 +200,15 @@ public class Login extends AppCompatActivity {
             }
         } else {
             Toast.makeText(getApplicationContext(),"NO Internet Access",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean checkverification() {
+        final FirebaseUser user = mAuth.getCurrentUser();
+        if(user.isEmailVerified()){
+            return true;
+        }else{
+            return false;
         }
     }
 }
