@@ -22,13 +22,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fill out the Following Information Correctly"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="#ff3300"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_margin="10dp"
                 android:orientation="vertical"
+                android:background="@drawable/border"
                 android:padding="6dip">
 
                 <TextView
@@ -37,7 +49,7 @@
                     android:layout_margin="2dp"
                     android:padding="5dp"
                     android:text="Enter  Group Name"
-                    android:textColor="#002e4d"
+                    android:textColor="#000"
                     android:textSize="15dp" />
 
                 <EditText
@@ -46,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:padding="5dp"
                     android:hint="Name"
                     android:textColor="#00b300"/>
 
@@ -55,7 +68,7 @@
                     android:layout_margin="2dp"
                     android:padding="5dp"
                     android:text="Enter your Mobile Number"
-                    android:textColor="#002e4d"
+                    android:textColor="#000"
                     android:textSize="15dp" />
 
                 <EditText
@@ -64,6 +77,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:padding="5dp"
                     android:hint="Contact Number"
                     android:textColor="#00b300" />
                 <TextView
@@ -72,7 +86,7 @@
                     android:layout_margin="2dp"
                     android:padding="5dp"
                     android:text="Enter the number of Person Can Accomodate"
-                    android:textColor="#002e4d"
+                    android:textColor="#000"
                     android:textSize="15dp" />
 
                 <EditText
@@ -81,6 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:padding="5dp"
                     android:inputType="number"
                     android:hint="Max. holding capacity"
                     android:textColor="#00b300" />
@@ -91,7 +106,7 @@
                     android:layout_margin="2dp"
                     android:padding="5dp"
                     android:text="Enter the number of Person Currently Accomodate"
-                    android:textColor="#002e4d"
+                    android:textColor="#000"
                     android:textSize="15dp" />
 
                 <EditText
@@ -100,6 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:padding="5dp"
                     android:inputType="number"
                     android:hint=" Current holding capacity"
                     android:textColor="#00b300" />
@@ -110,7 +126,7 @@
                     android:layout_margin="2dp"
                     android:padding="5dp"
                     android:text="Enter the Place of Camp"
-                    android:textColor="#002e4d"
+                    android:textColor="#000"
                     android:textSize="15dp" />
 
                 <EditText
@@ -119,6 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:padding="5dp"
                     android:hint="Place of camp"
                     android:textColor="#000000" />
 
@@ -128,7 +145,7 @@
                     android:layout_margin="2dp"
                     android:padding="5dp"
                     android:text="Please Wait while we get your location"
-                    android:textColor="#002e4d"
+                    android:textColor="#000"
                     android:textSize="15dp" />
 
 
@@ -139,6 +156,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:textSize="15dp"
+                    android:layout_margin="2dp"
                     android:padding="5dp"
                     android:hint="Latitude"
                     android:textColor="#00b300"/>
@@ -150,6 +168,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:textSize="15dp"
+                    android:layout_margin="2dp"
                     android:padding="5dp"
                     android:hint="Longitude"
                     android:textColor="#00b300" />
