@@ -1,6 +1,7 @@
 package com.example.d_plan;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -48,6 +51,7 @@ public class Help_Requests extends AppCompatActivity {
     private affect_user_adapter mAdapter;
     private ProgressBar mProgressBar;
     String did;
+    HashMap<String,Affected_Person> map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +95,9 @@ public class Help_Requests extends AppCompatActivity {
             listViewToDo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    // add the update set complete true here 
+                    TextView tv = (TextView)view.findViewById(R.id.id);
+                    update_userdata(map.get(tv.getText().toString()));
+                    // add the update set complete true here
                 }
             });
 
@@ -102,6 +108,51 @@ public class Help_Requests extends AppCompatActivity {
         }
     }
 
+    private void update_userdata(final Affected_Person item) {
+
+        if (mClient == null) {
+            return;
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle("Person Saved")
+                .setMessage("Have you verified the person requested is saved ?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                        item.setComplete(true);
+                        // Set the item as completed and update it in the table
+                        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
+                            @Override
+                            protected Void doInBackground(Void... params) {
+                                try {
+
+                                    checkItemInTable(item);
+                                } catch (final Exception e) {
+                                    createAndShowDialogFromTask(e, "Error");
+                                }
+
+                                return null;
+                            }
+                        };
+                        runAsyncTask(task);
+                        Toast.makeText(getApplicationContext(),"Fields are updated",Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(getApplicationContext(),Help_Requests.class);
+                        i.putExtra("id",did);
+                        startActivity(i);
+                    }})
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                }).show();
+    }
+
+    public void checkItemInTable(Affected_Person item) throws ExecutionException, InterruptedException {
+        atable.update(item).get();
+    }
     @Override
     public void onBackPressed() {
         Intent i = new Intent(getApplicationContext(),Login.class);
@@ -114,7 +165,7 @@ public class Help_Requests extends AppCompatActivity {
 
         // Get the items that weren't marked as completed and add them in the
         // adapter
-
+        map = new HashMap<>();
         AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... params) {
@@ -131,8 +182,10 @@ public class Help_Requests extends AppCompatActivity {
                             mAdapter.clear();
 
                             for (Affected_Person item : results) {
-                                if( item.isComplete()==false)
+                                if( item.isComplete()==false) {
                                     mAdapter.add(item);
+                                    map.put(item.getId(),item);
+                                }
                             }
                         }
                     });
