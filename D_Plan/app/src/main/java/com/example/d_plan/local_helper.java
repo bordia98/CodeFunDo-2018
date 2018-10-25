@@ -55,7 +55,7 @@ public class local_helper extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_local_helper);
+        setContentView(R.layout.local_helper);
         Toolbar toolbar =(Toolbar)findViewById(R.id.my_toolbar);
         assert toolbar != null;
         toolbar.setTitle("Current Disasters");

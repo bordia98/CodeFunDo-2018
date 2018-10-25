@@ -55,7 +55,7 @@ public class mycenter extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mycenter);
+        setContentView(R.layout.mycenter);
 
         Toolbar toolbar =(Toolbar)findViewById(R.id.my_toolbar);
         assert toolbar != null;

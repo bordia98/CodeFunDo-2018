@@ -55,7 +55,7 @@ public class Helper_Form extends AppCompatActivity implements LocationListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_helper__form);
+        setContentView(R.layout.helper__form);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         assert toolbar != null;

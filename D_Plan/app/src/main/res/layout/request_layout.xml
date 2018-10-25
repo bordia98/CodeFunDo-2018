@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="vertical"
+            android:background="#e6e6e6">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="__________"
+                android:id="@+id/id"
+                android:textStyle="bold"
+                android:textSize="8dp"
+                android:textColor="#ff9933"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/person_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:padding="5dp"
+                    android:textColor="#002e4d"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="#e6e6e6">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:text="Contact No."
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textSize="12dp"
+                        android:textColor="#002e4d" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:text="________"
+                        android:id="@+id/contactno"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textSize="12dp"
+                        android:textColor="#ff66cc" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:text="Place"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textSize="12dp"
+                        android:textColor="#002e4d"
+                       />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:text="________"
+                        android:id="@+id/location"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textSize="12dp"
+                        android:textColor="#00b300" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#e6e6e6"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:text="Latitude:"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textSize="12dp"
+                        android:textColor="#002e4d"
+                        android:padding="5dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:text="__________"
+                        android:id="@+id/lat"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textSize="12dp"
+                        android:textColor="#1aa3ff"
+                        android:padding="5dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:text="Longitude"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textSize="12dp"
+                        android:textColor="#002e4d"
+                        android:padding="5dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:text="__________"
+                        android:id="@+id/longi"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textSize="12dp"
+                        android:textColor="#ff3300"
+                        android:padding="5dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

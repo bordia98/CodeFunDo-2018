@@ -28,7 +28,7 @@ public class User_Intermediate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user__intermediate);
+        setContentView(R.layout.user_intermediate);
         Toolbar toolbar =(Toolbar)findViewById(R.id.my_toolbar);
         assert toolbar != null;
         toolbar.setTitle("User Choice");

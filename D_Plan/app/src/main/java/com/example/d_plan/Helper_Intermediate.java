@@ -15,7 +15,7 @@ public class Helper_Intermediate extends AppCompatActivity {
     String dtype,dloc,id;
     TextView tpye,loc;
 
-    Button update,newhelpcenter;
+    Button update,newhelpcenter,helprequest;
 
     @Override
     public void onBackPressed() {
@@ -28,7 +28,7 @@ public class Helper_Intermediate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_helper__intermediate);
+        setContentView(R.layout.helper__intermediate);
 
         Toolbar toolbar =(Toolbar)findViewById(R.id.my_toolbar);
         assert toolbar != null;
@@ -46,7 +46,7 @@ public class Helper_Intermediate extends AppCompatActivity {
 
         update = (Button)findViewById(R.id.update);
         newhelpcenter = (Button) findViewById(R.id.organise);
-
+        helprequest = (Button)findViewById(R.id.users);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,5 +66,13 @@ public class Helper_Intermediate extends AppCompatActivity {
             }
         });
 
+        helprequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent o = new Intent(getApplicationContext(),Help_Requests.class);
+                o.putExtra("id",id);
+                startActivity(o);
+            }
+        });
     }
 }

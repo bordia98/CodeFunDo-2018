@@ -35,7 +35,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-import static android.location.LocationManager.GPS_PROVIDER;
 
 
 public class Share_Activity extends AppCompatActivity implements LocationListener {
@@ -51,7 +50,7 @@ public class Share_Activity extends AppCompatActivity implements LocationListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share_);
+        setContentView(R.layout.share_location);
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         assert toolbar != null;
         toolbar.setTitle("Share Location");

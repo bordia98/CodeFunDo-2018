@@ -1,7 +1,6 @@
 package com.example.d_plan;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
@@ -14,8 +13,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -44,30 +41,21 @@ import java.util.concurrent.TimeUnit;
 
 import static com.microsoft.windowsazure.mobileservices.table.query.QueryOperations.val;
 
-public class View_Camps extends AppCompatActivity {
-
+public class Help_Requests extends AppCompatActivity {
 
     private MobileServiceClient mClient;
-    private MobileServiceTable<Local_help> ltable;
-    private center_view_adapter mAdapter;
+    private MobileServiceTable<Affected_Person> atable;
+    private affect_user_adapter mAdapter;
     private ProgressBar mProgressBar;
     String did;
-    private HashMap<String,Local_help> map;
-    @Override
-    public void onBackPressed() {
-        Intent i = new Intent(getApplicationContext(),Admin_Panel.class);
-        i.putExtra("role","admin");
-        startActivity(i);
-        super.onBackPressed();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view__camps);
+        setContentView(R.layout.help__requests);
         Toolbar toolbar =(Toolbar)findViewById(R.id.my_toolbar);
         assert toolbar != null;
-        toolbar.setTitle("Details of Camps");
+        toolbar.setTitle(" Help Requested");
         toolbar.getOverflowIcon().setColorFilter(ContextCompat.getColor(this, R.color.common_google_signin_btn_text_light_default), PorterDuff.Mode.SRC_ATOP);
         setSupportActionBar(toolbar);
         mProgressBar = (ProgressBar) findViewById(R.id.loadingProgressBar);
@@ -75,7 +63,7 @@ public class View_Camps extends AppCompatActivity {
         mProgressBar.setVisibility(ProgressBar.GONE);
         did = getIntent().getStringExtra("id");
         try {
-            mClient = new MobileServiceClient("https://d-plan.azurewebsites.net", this).withFilter(new View_Camps.ProgressFilter());
+            mClient = new MobileServiceClient("https://d-plan.azurewebsites.net", this).withFilter(new Help_Requests.ProgressFilter());
 
             mClient.setAndroidHttpClientFactory(new OkHttpClientFactory() {
                 @Override
@@ -88,12 +76,12 @@ public class View_Camps extends AppCompatActivity {
             });
 
 
-            ltable = mClient.getTable(Local_help.class);
+            atable = mClient.getTable(Affected_Person.class);
 
             initLocalStore().get();
 
             // Create an adapter to bind the items with the view
-            mAdapter = new center_view_adapter(this, R.layout.my_center_layout);
+            mAdapter = new affect_user_adapter(this, R.layout.request_layout);
             final ListView listViewToDo = (ListView) findViewById(R.id.listViewToDo);
             listViewToDo.setAdapter(mAdapter);
 
@@ -103,8 +91,7 @@ public class View_Camps extends AppCompatActivity {
             listViewToDo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    final TextView gid = (TextView)view.findViewById(R.id.id);
-                    update_center(map.get(gid.getText().toString()));
+                    // add the update set complete true here 
                 }
             });
 
@@ -115,69 +102,25 @@ public class View_Camps extends AppCompatActivity {
         }
     }
 
-
-    public void update_center(final Local_help item) {
-        if (mClient == null) {
-            return;
-        }
-
-        new AlertDialog.Builder(this)
-                .setTitle("Change Permission")
-                .setMessage("Do you really want to change Authorization?")
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-
-                        if(item.getAuth()){
-                            item.update_auth(false);
-                        }else{
-                            item.update_auth(true);
-                        }
-
-                        // Set the item as completed and update it in the table
-                        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
-                            @Override
-                            protected Void doInBackground(Void... params) {
-                                try {
-
-                                    checkItemInTable(item);
-                                } catch (final Exception e) {
-                                    createAndShowDialogFromTask(e, "Error");
-                                }
-
-                                return null;
-                            }
-                        };
-                        runAsyncTask(task);
-                        Toast.makeText(getApplicationContext(),"Fields are updated",Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(getApplicationContext(),View_Camps.class);
-                        i.putExtra("id",did);
-                        startActivity(i);
-                    }})
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        return;
-                    }
-                }).show();
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(getApplicationContext(),Login.class);
+        i.putExtra("id",did);
+        startActivity(i);
+        super.onBackPressed();
     }
-
-    public void checkItemInTable(Local_help item) throws ExecutionException, InterruptedException {
-        ltable.update(item).get();
-    }
-
 
     private void refreshItemsFromTable() {
 
         // Get the items that weren't marked as completed and add them in the
         // adapter
-        map = new HashMap<String, Local_help>();
+
         AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... params) {
 
                 try {
-                    final List<Local_help> results = refreshItemsFromMobileServiceTable();
+                    final List<Affected_Person> results = refreshItemsFromMobileServiceTable();
 
                     //Offline Sync
                     //final List<ToDoItem> results = refreshItemsFromMobileServiceTableSyncTable();
@@ -187,11 +130,9 @@ public class View_Camps extends AppCompatActivity {
                         public void run() {
                             mAdapter.clear();
 
-                            for (Local_help item : results) {
-                                if( item.isComplete()==false){
+                            for (Affected_Person item : results) {
+                                if( item.isComplete()==false)
                                     mAdapter.add(item);
-                                    map.put(item.getId(),item);
-                                }
                             }
                         }
                     });
@@ -206,8 +147,8 @@ public class View_Camps extends AppCompatActivity {
         runAsyncTask(task);
     }
 
-    private List<Local_help> refreshItemsFromMobileServiceTable() throws ExecutionException, InterruptedException {
-        return  ltable.where().field("Disaster_id").eq(val(did)).execute().get();
+    private List<Affected_Person> refreshItemsFromMobileServiceTable() throws ExecutionException, InterruptedException {
+        return  atable.where().field("Disaster_id").eq(val(did)).execute().get();
     }
 
 
@@ -227,10 +168,14 @@ public class View_Camps extends AppCompatActivity {
 
                     Map<String, ColumnDataType> tableDefinition = new HashMap<String, ColumnDataType>();
                     tableDefinition.put("id", ColumnDataType.String);
-                    tableDefinition.put("dname", ColumnDataType.String);
+                    tableDefinition.put("name", ColumnDataType.String);
+                    tableDefinition.put("mobile",ColumnDataType.String);
+                    tableDefinition.put("latitute",ColumnDataType.String);
+                    tableDefinition.put("longitude",ColumnDataType.String);
+                    tableDefinition.put("disaster_id",ColumnDataType.String);
                     tableDefinition.put("complete", ColumnDataType.Boolean);
 
-                    localStore.defineTable("Disaster", tableDefinition);
+                    localStore.defineTable("Affected_Person", tableDefinition);
 
                     SimpleSyncHandler handler = new SimpleSyncHandler();
 

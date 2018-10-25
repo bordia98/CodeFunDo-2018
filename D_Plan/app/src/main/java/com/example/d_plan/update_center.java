@@ -70,7 +70,7 @@ public class update_center extends AppCompatActivity implements LocationListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_center);
+        setContentView(R.layout.update_center);
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         assert toolbar != null;
         toolbar.setTitle("Update Center");
