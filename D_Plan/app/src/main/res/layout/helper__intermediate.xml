@@ -89,7 +89,7 @@
         </LinearLayout>
 
         <Button
-            android:layout_width="250dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
             android:id="@+id/organise"
@@ -97,10 +97,11 @@
             android:layout_margin="10dp"
             android:text="Organize Help Center"
             android:layout_gravity="center"
+            android:padding="10dp"
             android:background="@drawable/button"/>
 
         <Button
-            android:layout_width="250dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
             android:layout_margin="10dp"
@@ -112,12 +113,13 @@
 
         <Button
             android:id="@+id/users"
-            android:layout_width="250dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:background="#002e4d"
+            android:background="@drawable/button"
             android:text="See Help Requests"
+            android:padding="10dp"
             android:textColor="#FFFFFF"
             android:textSize="20dp" />
 

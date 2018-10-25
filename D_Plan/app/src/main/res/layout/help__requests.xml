@@ -23,11 +23,34 @@
         <TextView
             android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
-            android:layout_weight="0.12"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:layout_weight="1"
+            android:text="Req. Closed:"
+            android:padding="2dp"
+            android:textColor="#00b300"/>
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="2dp"
+            android:id="@+id/rccount"
+            android:textColor="#000"
+            android:text="______"/>
+
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#ff3300"
+            android:padding="2dp"
+            android:text="Total Req. :"/>
+        <TextView
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#000"
+            android:padding="2dp"
+            android:id="@+id/rtcount"
+            android:text="______"/>
 
         <ProgressBar
             android:id="@+id/loadingProgressBar"

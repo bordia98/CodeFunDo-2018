@@ -52,6 +52,8 @@ public class Help_Requests extends AppCompatActivity {
     private ProgressBar mProgressBar;
     String did;
     HashMap<String,Affected_Person> map;
+    int count,tcount;
+    TextView crcount,trcount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +83,9 @@ public class Help_Requests extends AppCompatActivity {
 
 
             atable = mClient.getTable(Affected_Person.class);
+
+            crcount = (TextView)findViewById(R.id.rccount);
+            trcount = (TextView)findViewById(R.id.rtcount);
 
             initLocalStore().get();
 
@@ -182,11 +187,15 @@ public class Help_Requests extends AppCompatActivity {
                             mAdapter.clear();
 
                             for (Affected_Person item : results) {
+                                tcount++;
                                 if( item.isComplete()==false) {
+                                    count++;
                                     mAdapter.add(item);
                                     map.put(item.getId(),item);
                                 }
                             }
+                            crcount.setText(tcount-count+"");
+                            trcount.setText(tcount+"");
                         }
                     });
                 } catch (final Exception e){
