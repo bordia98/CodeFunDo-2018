@@ -140,7 +140,6 @@ public class Login extends AppCompatActivity {
             return;
         }
 
-
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
@@ -149,11 +148,13 @@ public class Login extends AppCompatActivity {
             //instead of my id here will come the id of the admin governing
             if (selector.equals("admin")){
                 if(emailid.equals("bhavyabordia@gmail.com")){
+                    pgbar.setVisibility(View.VISIBLE);
                     mAuth.signInWithEmailAndPassword(emailid, passwordid)
                             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
+                                    pgbar.setVisibility(View.GONE);
                                     if (task.isSuccessful()) {
                                         if(checkverification()){
                                             Intent i = new Intent(getApplicationContext(), Admin_Panel.class);
@@ -177,11 +178,13 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"You don't have to access local Page",Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    pgbar.setVisibility(View.VISIBLE);
                     mAuth.signInWithEmailAndPassword(emailid, passwordid)
                             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
+                                    pgbar.setVisibility(View.GONE);
                                     if (task.isSuccessful()) {
                                         if(checkverification()){
                                             Intent i = new Intent(getApplicationContext(), local_helper.class);

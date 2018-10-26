@@ -11,7 +11,6 @@
     <item android:id="@+id/logout"
         android:orderInCategory="101"
         android:title="Logout"
-        android:icon="@drawable/logout"
-        app:showAsAction="ifRoom">
+        android:icon="@drawable/logout">
     </item>
 </menu>
