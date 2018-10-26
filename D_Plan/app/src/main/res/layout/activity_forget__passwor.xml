@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.d_plan.Forget_Passwor">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#002e4d"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginTop="50dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/border">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:textColor="#000000"
+                android:text="Please Enter your Email id:"
+                android:gravity="center_horizontal"
+                android:id="@+id/textres"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textres"
+                android:textSize="20dp"
+                android:textColor="#00b300"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:padding="20dp"
+                android:hint="Enter email address"
+                android:textColorHint="#00b300"
+                android:layout_marginTop="20dp"
+                android:inputType="textEmailAddress"
+                android:id="@+id/resetemailid"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button"
+                    android:text="Submit"
+                    android:layout_weight="1"
+                    android:textColor="#FFF"
+                    android:textSize="20dp"
+                    android:layout_margin="15dp"
+                    android:padding="10dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/submit"
+                    android:background="@drawable/button"
+                    android:text="Back"
+                    android:layout_margin="15dp"
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    android:textColor="#FFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -77,7 +77,6 @@ public class Admin_Panel extends AppCompatActivity {
         mProgressBar.setVisibility(ProgressBar.GONE);
 
         role = getIntent().getStringExtra("role");
-        Toast.makeText(getApplicationContext(),role,Toast.LENGTH_SHORT).show();
 
         try {
             mClient = new MobileServiceClient("https://d-plan.azurewebsites.net", this).withFilter(new Admin_Panel.ProgressFilter());
