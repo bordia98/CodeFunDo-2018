@@ -19,3 +19,8 @@ After we will develop and test the above platform we will try to implement Machi
 ## Team Members
 - Bhavya Bordia
 - Sachin Yadav
+
+
+## Requirements
+
+- In order to Run this project on your system, you will need google.services.json file which is required for the Firebase Authentication part. Just read the firebase documentation about it like how to get that file and integrate it and you are ready to go.
