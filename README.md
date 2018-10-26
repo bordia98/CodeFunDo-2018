@@ -28,5 +28,5 @@ After we will develop and test the above platform we will try to implement Machi
 
 ## Release
 
-- You can find the app in the releases of this repository.
+- You can find the app in the Release section of this repository.
 - You can also find the app here https://drive.google.com/open?id=1ldf5MLIF4hO_qYqO27SIuidSJ_tXW-Uv
