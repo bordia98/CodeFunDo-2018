@@ -24,3 +24,9 @@ After we will develop and test the above platform we will try to implement Machi
 ## Requirements
 
 - In order to Run this project on your system, you will need google.services.json file which is required for the Firebase Authentication part. Just read the firebase documentation about it like how to get that file and integrate it and you are ready to go.
+
+
+## Release
+
+- You can find the app in the releases of this repository.
+- You can also find the app here https://drive.google.com/open?id=1ldf5MLIF4hO_qYqO27SIuidSJ_tXW-Uv
