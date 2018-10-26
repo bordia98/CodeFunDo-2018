@@ -135,6 +135,13 @@ public class User_awareness extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        Intent i = new Intent(getApplicationContext(),Login.class);
+        startActivity(i);
+        super.onBackPressed();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_refresh) {
             refreshItemsFromTable();

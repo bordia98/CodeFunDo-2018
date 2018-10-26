@@ -54,6 +54,14 @@ public class Admin_Panel extends AppCompatActivity {
     private Disaster_itemAdapter mAdapter;
     private ProgressBar mProgressBar;
     String role;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+        System.exit(0);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

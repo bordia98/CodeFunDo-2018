@@ -53,6 +53,13 @@ public class local_helper extends AppCompatActivity {
     private ProgressBar mProgressBar;
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+        System.exit(0);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.local_helper);
