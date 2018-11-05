@@ -18,7 +18,6 @@ After we will develop and test the above platform we will try to implement Machi
 
 ## Team Members
 - Bhavya Bordia
-- Sachin Yadav
 
 
 ## Requirements
